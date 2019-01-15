@@ -1,0 +1,101 @@
+@import './../../../../assets/scss/_config-base';
+
+$header: '.navbar__header';
+$item: '.navbar__item';
+$link: '.navbar__link';
+
+.navbar {
+  @include rem(width, 260px);
+  position: fixed;
+  top: 60px;
+  left: 0;
+  height: calc(100vh - 60px);
+  background-color: $color-blue-gray;
+  transition: 0.5s ease;
+
+  @include mq('md', max) {
+    @include rem(width, 230px);
+    top: 50px;
+    height: calc(100vh - 50px);
+    transform: translateX(-100%);
+  }
+
+  &__header {
+    @include rem(padding, 15px 20px);
+    @include rem(font-size, 12px);
+    @include rem(letter-spacing, 1px);
+    background-color: $color-blue-gray-dark;
+    color: $color-blue-gray-lighten;
+    font-family: $font-support;
+    text-transform: uppercase;
+    text-align: center;
+    transition: .5s ease;
+  }
+
+  &__item {
+    @include rem(padding, 15px 20px);
+    cursor: pointer;
+    color: $color-blue-gray-lighten;
+    font-family: $font-support;
+    transition: .3s ease;
+
+    &.is--active {
+      @include rem(padding-left, 15px);
+      border-left: 4px solid $color-primary;
+      background-color: darken($color-blue-gray, 7%);
+      color: $color-white;
+    }
+
+    &:hover {
+      background-color: darken($color-blue-gray, 11%);
+      color: $color-white;
+    }
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    span {
+      transition: .5s ease;
+    }
+
+    .fa {
+      @include rem(margin-right, 10px);
+    }
+  }
+
+
+  &.is--toggle {
+    @include mq('md') {
+      width: 60px;
+
+      #{$header} {
+        font-size: 0;
+        padding: 0;
+      }
+
+      #{$item}:hover {
+        #{$link} span {
+          @include rem(font-size, 15px);
+          @include rem(border-radius, 0 5px 5px 0);
+          padding: 15px 10px;
+          background-color: darken($color-blue-gray, 11%);
+          transform: scaleX(1);
+        }
+      }
+
+      #{$link} span {
+        position: absolute;
+        left: 60px;
+        font-size: 0;
+        width: 180px;
+        transform: scaleX(0);
+        transform-origin: left;
+      }
+    }
+
+    @include mq('md', max) {
+      transform: translateX(0%);
+    }
+  }
+}
