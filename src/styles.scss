@@ -1,1 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
+/**
+ * Vendor (Third party libs)
+ */
+@import './../node_modules/sass-rem/rem';
+
+/**
+ * Settings
+ */
+@import './assets/scss/settings/fonts';
+@import './assets/scss/settings/typography';
+@import './assets/scss/settings/colors';
+@import './assets/scss/settings/variables';
+
+/**
+ * Tools
+ */
+@import './assets/scss/tools/mixins';
+
+/**
+ * Elements reset
+ */
+@import './assets/scss/elements/reset';
