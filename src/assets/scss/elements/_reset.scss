@@ -2,7 +2,7 @@
 html {
   @include rem-baseline;
   font-weight: $font-weight-base;
-  font-family: $font-support;
+  font-family: $font-main;
   cursor: default;
   height: 100%;
   word-break: break-word;

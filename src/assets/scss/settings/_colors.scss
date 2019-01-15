@@ -2,6 +2,15 @@
  * Colors
  */
 
-$color-white      : #ffffff !default;
-$color-black      : #000000 !default;
-$color-gray-light : #ececec !default;
+$color-white              : #ffffff !default;
+$color-black              : #000000 !default;
+$color-gray-light         : #ececec !default;
+
+$color-teal               : #00a485 !default;
+$color-blue-gray-lighten  : #b8c7ce !default;
+$color-blue-gray-light    : #62717b !default;
+$color-blue-gray          : #37464f !default;
+$color-blue-gray-dark     : #101f27 !default;
+
+$color-primary            : $color-teal !default;
+$color-secondary          : $color-blue-gray !default;
