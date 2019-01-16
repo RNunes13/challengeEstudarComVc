@@ -130,7 +130,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   private _filterMatters(searchTerm) {
     this.filteredCourses = this._coursesRaw.filter(course => {
       const nameFormatted = this.helpers.removeSpecialCharacters(course.name).toLocaleLowerCase();
-      return nameFormatted.match(searchTerm.toLocaleLowerCase());
+      const termFormatted = this.helpers.removeSpecialCharacters(searchTerm).toLocaleLowerCase();
+      return nameFormatted.match(termFormatted);
     });
 
     this.filteredCourses.sort((a, b) => {
