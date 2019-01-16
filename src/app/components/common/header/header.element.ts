@@ -15,6 +15,7 @@ export class HeaderElements {
     this._name = document.querySelector('.js--header-menu-name');
     this._button = document.querySelector('.js--header-button');
     this._navbar = document.querySelector('.js--navbar');
+    this._section = document.querySelector('.js--section');
   }
 
   get self() {
@@ -39,5 +40,9 @@ export class HeaderElements {
 
   get navbar() {
     return this._navbar;
+  }
+
+  get section() {
+    return this._section;
   }
 }

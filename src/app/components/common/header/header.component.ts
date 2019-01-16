@@ -13,12 +13,13 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this._el = new HeaderElements();
+    setTimeout(() => this._el = new HeaderElements(), 500);
   }
 
   toggleMenu() {
     this._el.menu.classList.toggle('is--toggle');
     this._el.navbar.classList.toggle('is--toggle');
+    this._el.section.classList.toggle('menu-toggle');
   }
 
 }
