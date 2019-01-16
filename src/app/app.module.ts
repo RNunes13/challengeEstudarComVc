@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { EndpointService } from './core/endpoint/endpoint.service';
 import { ModalService } from './core/modal/modal.service';
 import { LoaderService } from './core/loader/loader.service';
+import { NotifyService } from './core/notify/notify.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { LoaderService } from './core/loader/loader.service';
   providers: [
     EndpointService,
     ModalService,
-    LoaderService
+    LoaderService,
+    NotifyService
   ],
   bootstrap: [AppComponent]
 })
