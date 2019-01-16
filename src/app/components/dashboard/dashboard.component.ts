@@ -6,6 +6,7 @@ import { DashboardElements } from './dashboard.elements';
 import { EndpointService } from 'src/app/core/endpoint/endpoint.service';
 import { ModalService } from 'src/app/core/modal/modal.service';
 import { LoaderService } from 'src/app/core/loader/loader.service';
+import { NotifyService } from './../../core/notify/notify.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,7 +25,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(
     private endpointService: EndpointService,
     private modalService: ModalService,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    private notifyService: NotifyService
   ) { }
 
   ngOnInit() {
@@ -57,7 +59,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     const error = (err) => {
       this.loaderService.hide();
-      console.log('error -> ', err);
+      this.notifyService.alert({
+        type: 'error',
+        text: `Ocorreu algum problema na consulta dos dados. Mais informações estão descritas no console do seu navegador.
+
+               Erro: ${err.status} - ${err.statusText}`,
+        delay: 10000
+      })
+      console.error(err);
     };
 
     const complete = () => {
