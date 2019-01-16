@@ -1,10 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+
 
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
-
 import { ComponentsModule } from './components/components.module';
+import { AppRoutingModule } from './app-routing.module';
+import { EndpointService } from './core/endpoint/endpoint.service';
+import { ModalService } from './core/modal/modal.service';
 
 @NgModule({
   declarations: [
@@ -13,9 +16,13 @@ import { ComponentsModule } from './components/components.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    EndpointService,
+    ModalService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
