@@ -7,7 +7,7 @@ import { Courses } from './../../model/courses';
 })
 export class EndpointService {
 
-  private _url: string = 'https://raw.githubusercontent.com/estudarcomvoce/frontend-challenge/master/assets/courses.json';
+  private _url = 'https://raw.githubusercontent.com/estudarcomvoce/frontend-challenge/master/assets/courses.json';
 
   constructor(private http: HttpClient) { }
 

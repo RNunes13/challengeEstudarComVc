@@ -30,7 +30,7 @@ export class ModalService {
     const colorImageContainer = course.generic ? 'color-generic-course' : 'color-custom-course';
     this._alterColorCourse(colorImageContainer);
 
-    const srcImage = course.image ? course.image : 'assets/img/box.png'
+    const srcImage = course.image ? course.image : 'assets/img/box.png';
     this._el.image.setAttribute('src', srcImage);
     this._el.image.setAttribute('alt', course.name);
 
@@ -67,8 +67,10 @@ export class ModalService {
 
   private _alterColorCourse(classColor: string) {
     Array.from(this._el.imageContainer.classList).forEach(_class => {
-      if (_class.match(/^color-/)) this._el.imageContainer.classList.remove(_class);
-    })
+      if (_class.match(/^color-/)) {
+        this._el.imageContainer.classList.remove(_class);
+      }
+    });
 
     this._el.imageContainer.classList.add(classColor);
   }

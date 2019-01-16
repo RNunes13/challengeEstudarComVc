@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   genericCourses: Array<Courses>;
   filteredCourses: Array<Courses>;
   searchForm: FormGroup;
-  searching: boolean = false;
+  searching = false;
 
   constructor(
     private endpointService: EndpointService,
@@ -38,9 +38,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this._el = new DashboardElements();
-    this._buildSearchForm()
+    this._buildSearchForm();
     setTimeout(() => {
-      this._showDashboard()
+      this._showDashboard();
       this._buildCourses();
     }, 500);
   }
@@ -106,7 +106,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
                Erro: ${err.status} - ${err.statusText}`,
         delay: 10000
-      })
+      });
       console.error(err);
     };
 
