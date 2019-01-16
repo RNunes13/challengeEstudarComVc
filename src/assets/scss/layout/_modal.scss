@@ -1,0 +1,101 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: z('modal');
+  background-color: rgba(black, .7);
+
+  &__container {
+    height: 100%;
+    width: 100%;
+    transition: 0.8s ease;
+
+    &.slide {
+      transform: translateY(-110%);
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  &__wrap {
+    @include rem(width, 600px);
+    @include rem(border-radius, 10px);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: $color-white;
+    border: 1px solid $color-gray-light;
+    transform: translate(-50%, -50%);
+    transition: 300ms ease;
+    overflow: hidden;
+
+    @include mq('md', max) {
+      width: 95%;
+    }
+
+    &.is--hidden {
+      display: none;
+    }
+
+    &.has--scroll {
+      height: 95%;
+      overflow-y: auto;
+    }
+  }
+
+  &__heading {
+    &--close {
+      @include rem(font-size, 18px);
+      @include rem(top, 15px);
+      @include rem(right, 15px);
+      cursor: pointer;
+      position: absolute;
+      border-radius: 50%;
+      color: $color-black;
+      transition: .3s ease;
+
+      &:hover {
+        color: lighten($color-black, 50%);
+      }
+    }
+  }
+
+  &__body {
+    &--title {
+      @include rem(padding, 20px 20px 0);
+      @include rem(font-size, 20px);
+      color: $color-blue-darker;
+      font-family: $font-support;
+    }
+    &--description {
+      @include rem(padding, 0 20px);
+      color: $color-gray;
+    }
+
+    &--image {
+      @include rem(max-width, 120px);
+
+      @include mq('xs', max) {
+        @include rem(max-width, 100px);
+      }
+
+      &-container {
+        @include rem(padding, 50px);
+        text-align: center;
+      }
+    }
+  }
+
+  &__footer {
+    @include rem(padding, 20px);
+    text-align: right;
+
+    &--button {
+      &-go {
+        @extend %btn--primary;
+      }
+    }
+  }
+}

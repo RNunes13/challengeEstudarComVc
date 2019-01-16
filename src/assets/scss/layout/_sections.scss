@@ -23,3 +23,9 @@ section.is--section {
     }
   }
 }
+
+body.has--no-scroll {
+  section.is--section {
+    overflow: hidden;
+  }
+}

@@ -3,4 +3,55 @@
  */
 
 %btn {
+  @include rem(height, $btn-height);
+  @include rem(padding, 10px 15px);
+  @include rem(font-size, 12px);
+  @include rem(letter-spacing, 2px);
+  @include rem(border-radius, 5px);
+  @include font-weight(bold);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid transparent;
+  color: $color-white;
+
+  &--reset {
+    @include reset-button;
+  }
+
+  // All buttons
+  &--primary {
+    @extend %btn;
+
+    &:focus,
+    &.has--focus {
+        outline: 0;
+    }
+
+    &.is--disabled,
+    &:disabled {
+      @include button-disabled;
+    }
+
+    &:not(:disabled):not(.is--disabled) {
+      cursor: pointer;
+    }
+  }
+
+  /**
+   * Specif buttons styles
+   */
+  &--primary {
+    background-color: $color-primary;
+    border-color: $color-primary;
+    color: $color-white;
+
+    &:hover {
+      background-color: darken($color-primary, 10%);
+      border-color: darken($color-primary, 10%);
+    }
+  }
 }

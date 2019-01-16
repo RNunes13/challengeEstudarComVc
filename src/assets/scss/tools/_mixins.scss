@@ -54,6 +54,24 @@
   list-style: none;
 }
 
+@mixin reset-button {
+  cursor: pointer;
+  font: inherit;
+  overflow: visible;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  line-height: normal;
+  -moz-user-select: text;
+}
+
+@mixin button-disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 @mixin headings($from: 1, $to: 6) {
   @for $i from $from through $to {
     h#{$i} {

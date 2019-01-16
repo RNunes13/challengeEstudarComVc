@@ -57,6 +57,6 @@ $marginSpacing: 15px;
     @include font-weight(bold);
     @include rem(font-size, 14px);
     font-family: $font-support;
-    color: #666666;
+    color: $color-gray;
   }
 }
