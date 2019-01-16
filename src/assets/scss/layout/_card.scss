@@ -3,6 +3,7 @@ $marginSpacing: 15px;
 .card {
   @include rem(border-radius, 15px);
   cursor: pointer;
+  flex: 0 0 auto;
   margin-right: $marginSpacing;
   margin-bottom: $marginSpacing;
   overflow: hidden;
@@ -27,7 +28,7 @@ $marginSpacing: 15px;
   }
 
   @include mq('xs', max) {
-    width: calc(100%);
+    width: 100%;
     margin-right: 0;
   }
 

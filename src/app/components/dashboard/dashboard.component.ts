@@ -45,6 +45,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.modalService.build(course);
   }
 
+  alterViewMode($event) {
+    const self: Element = $event.currentTarget;
+    const mode: string = self.getAttribute('data-value');
+
+    this._el.view.querySelector('button.is--active').classList.remove('is--active');
+    self.classList.add('is--active');
+
+    this._el.courses.setAttribute('data-view-mode', mode);
+  }
+
   private _buildCourses() {
     const next = (courses) => {
       if ((Array.isArray(courses) && !courses.length) || !courses) {

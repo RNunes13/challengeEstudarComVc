@@ -1,8 +1,25 @@
 <section class='dashboard is--section is--hidden js--section'>
   <div class='dashboard__container'>
     <h1 class='dashboard__heading'>Dashboard</h1>
+    <div class='dashboard__interactions'>
+      <div class='dashboard__interactions--view js--dashboard-view'>
+        <span class='dashboard__interactions--view-text'>Modo de visualização: </span>
+        <button class='dashboard__interactions--view-buttons is--active'
+                title='Visualização em colunas'
+                data-value='column'
+                (click)='alterViewMode($event)'>
+          <i class='fa fa-th'></i>
+        </button>
+        <button class='dashboard__interactions--view-buttons'
+                title='Visualização em linhas'
+                data-value='row'
+                (click)='alterViewMode($event)'>
+          <i class='fa fa-align-justify'></i>
+        </button>
+      </div>
+    </div>
     <div class='dashboard__content'>
-      <div class='dashboard__courses'>
+      <div class='dashboard__courses js--dashboard-courses' data-view-mode='column'>
         <div class='dashboard__courses--custom' *ngIf='customCourses?.length'>
           <h3 class='dashboard__courses--custom-title'>Matérias Personalizadas</h3>
           <div class='dashboard__courses--custom-container'>

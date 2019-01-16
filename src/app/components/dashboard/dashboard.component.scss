@@ -1,5 +1,7 @@
 @import './../../../assets/scss/_config-base';
 
+$courses: '.dashboard__courses';
+
 .dashboard {
   @include rem(padding, 15px);
   transition: .5s ease;
@@ -97,6 +99,66 @@
 
     &--custom {
       border-bottom: 1px solid $color-gray-light;
+    }
+
+    &--generic {
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    &[data-view-mode='row'] {
+      #{$courses}--custom-container,
+      #{$courses}--generic-container {
+        @include scrollbar(7px, $color-black, darken($color-white, 10%));
+        @include rem(padding-bottom, 10px);
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        @include mq('xs', max) {
+          @include scrollbar(4px, $color-black, darken($color-white, 5%));
+          @include rem(padding, 0 5px 20px);
+        }
+
+        .card {
+          @include mq('xs', max) {
+            @include rem(margin-right, 20px);
+            width: 95%;
+          }
+        }
+      }
+    }
+  }
+
+  &__interactions {
+    @include rem(margin-top, 10px);
+
+    &--view {
+      text-align: right;
+
+      &-text {
+        @include rem(margin-right, 10px);
+        @include rem(font-size, 15px);
+        @include font-weight(semi-bold);
+        color: $color-gray;
+      }
+      &-buttons {
+        @include reset-button;
+        @include rem(margin-right, 10px);
+        vertical-align: middle;
+
+        &.is--active {
+          .fa {
+            color: $color-primary;
+          }
+        }
+
+        .fa {
+          @include rem(font-size, 20px);
+          color: $color-gray;
+          transition: 500ms ease;
+        }
+      }
     }
   }
 }

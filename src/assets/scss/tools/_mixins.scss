@@ -64,6 +64,7 @@
   background: transparent;
   line-height: normal;
   -moz-user-select: text;
+  outline: none;
 }
 
 @mixin button-disabled {
@@ -86,6 +87,7 @@
 @mixin scrollbar($size, $primary, $secondary: lighten($primary, 25%)) {
   &::-webkit-scrollbar {
     width: $size;
+    height: $size;
   }
 
   &::-webkit-scrollbar-thumb {
