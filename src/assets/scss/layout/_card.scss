@@ -1,0 +1,62 @@
+$marginSpacing: 15px;
+
+.card {
+  @include rem(border-radius, 15px);
+  cursor: pointer;
+  margin-right: $marginSpacing;
+  margin-bottom: $marginSpacing;
+  overflow: hidden;
+  box-shadow: 1px 2px 11px 0 rgba(0, 0, 0, 0.15);
+  transition: 500ms ease;
+  will-change: transform;
+
+  @include mq('xl') {
+    width: 200px;
+  }
+
+  @include mq('xl', max) {
+    width: calc(25% - #{$marginSpacing});
+  }
+
+  @include mq('lg', max) {
+    width: calc(33.33% - #{$marginSpacing});
+  }
+
+  @include mq('sm', max) {
+    width: calc(50% - #{$marginSpacing});
+  }
+
+  @include mq('xs', max) {
+    width: calc(100%);
+    margin-right: 0;
+  }
+
+  &:hover {
+    transform: scale(1.04);
+  }
+
+  &__image {
+    @include rem(max-width, 80px);
+    transition: 500ms ease;
+
+    @include mq('lg', max) {
+      @include rem(max-width, 70px);
+    }
+
+    &--container {
+      @include rem(padding, 20px);
+      text-align: center;
+    }
+  }
+
+  &__content {
+    @include rem(padding, 15px 20px);
+  }
+
+  &__title {
+    @include font-weight(bold);
+    @include rem(font-size, 14px);
+    font-family: $font-support;
+    color: #666666;
+  }
+}

@@ -17,6 +17,14 @@
 @import './assets/scss/tools/mixins';
 
 /**
+ * Layouts
+ */
+@import './assets/scss/layout/sections';
+@import './assets/scss/layout/modal';
+@import './assets/scss/layout/colors-courses';
+@import './assets/scss/layout/card';
+
+/**
  * Elements reset
  */
 @import './assets/scss/elements/reset';

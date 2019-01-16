@@ -1,0 +1,25 @@
+section.is--section {
+  @include scrollbar(7px, $color-black, darken($color-white, 10%));
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  box-sizing: border-box;
+  overflow-x: auto;
+  transition: .5s ease;
+
+  @include mq('md') {
+    height: calc(100% - 60px);
+    width: calc(100% - 16.25rem);
+  }
+
+  @include mq('md', max) {
+    height: calc(100% - 50px);
+    width: 100%;
+  }
+
+  &.menu-toggle {
+    @include mq('md') {
+      width: calc(100% - 60px);
+    }
+  }
+}
