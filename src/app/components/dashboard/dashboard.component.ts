@@ -20,7 +20,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   customCourses: Array<Courses>;
   genericCourses: Array<Courses>;
 
-  constructor(private endpointService: EndpointService) { }
+  constructor(private endpointService: EndpointService, private modalService: ModalService) { }
 
   ngOnInit() {
     this._el = new DashboardElements();
@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   showModal(course: Courses) {
-    window.console.log('Modal is opening ...');
+    this.modalService.build(course);
   }
 
   private _separateCourses() {
