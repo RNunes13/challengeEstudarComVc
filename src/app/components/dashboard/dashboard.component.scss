@@ -82,7 +82,9 @@ $courses: '.dashboard__courses';
   &__courses {
     &--custom,
     &--generic,
-    &--empty {
+    &--empty,
+    &--search,
+    &--search-result {
       @include rem(margin-bottom, 20px);
       @include rem(padding-bottom, 15px);
 
@@ -106,9 +108,20 @@ $courses: '.dashboard__courses';
       padding-bottom: 0;
     }
 
+    &--search {
+      &-empty {
+        span {
+          @include rem(font-size, 20px);
+          @include font-weight(bold);
+          color: $color-primary;
+        }
+      }
+    }
+
     &[data-view-mode='row'] {
       #{$courses}--custom-container,
-      #{$courses}--generic-container {
+      #{$courses}--generic-container,
+      #{$courses}--search-container {
         @include scrollbar(7px, $color-black, darken($color-white, 10%));
         @include rem(padding-bottom, 10px);
         flex-wrap: nowrap;
@@ -158,6 +171,61 @@ $courses: '.dashboard__courses';
           color: $color-gray;
           transition: 500ms ease;
         }
+      }
+    }
+  }
+
+  &__search {
+    @include rem(margin, 10px 0 20px);
+
+    &--form {
+      $form: &;
+
+      &-group {
+        position: relative;
+        display: flex;
+        border-bottom: 1px solid $color-blue-gray-lighten;
+      }
+      &-input {
+        @include rem(padding, 10px);
+        @include rem(font-size, 14px);
+        width: calc(100% - #{$input-height});
+        height: $input-height;
+        border: none;
+        box-sizing: border-box;
+
+        &:focus {
+          & ~ #{$form}-underline {
+            transform: scale(1);
+          }
+          & ~ #{$form}-icon {
+            .fa {
+              color: $color-primary;
+            }
+          }
+        }
+      }
+      &-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: $input-height;
+
+        .fa {
+          @include rem(font-size, 20px);
+          color: $color-blue-gray-light;
+          transition: 500ms ease;
+        }
+      }
+      &-underline {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 2px;
+        background-color: $color-primary;
+        transform: scale(0);
+        transform-origin: left;
+        transition: 500ms ease;
       }
     }
   }

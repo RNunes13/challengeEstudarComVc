@@ -1,12 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { Courses } from 'src/app/model/courses';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
+import { Courses } from 'src/app/model/courses';
 import { DashboardElements } from './dashboard.elements';
 import { EndpointService } from 'src/app/core/endpoint/endpoint.service';
 import { ModalService } from 'src/app/core/modal/modal.service';
 import { LoaderService } from 'src/app/core/loader/loader.service';
 import { NotifyService } from './../../core/notify/notify.service';
+import { HelpersService } from './../../core/helpers/helpers.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,20 +19,26 @@ import { NotifyService } from './../../core/notify/notify.service';
 export class DashboardComponent implements OnInit, OnDestroy {
 
   private _el: DashboardElements;
-  private _subscription: Subscription;
+  private _subscription: Array<Subscription> = [];
   private _coursesRaw: Array<Courses>;
   customCourses: Array<Courses>;
   genericCourses: Array<Courses>;
+  filteredCourses: Array<Courses>;
+  searchForm: FormGroup;
+  searching: boolean = false;
 
   constructor(
     private endpointService: EndpointService,
     private modalService: ModalService,
     private loaderService: LoaderService,
-    private notifyService: NotifyService
+    private notifyService: NotifyService,
+    private helpers: HelpersService,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit() {
     this._el = new DashboardElements();
+    this._buildSearchForm()
     setTimeout(() => {
       this._showDashboard()
       this._buildCourses();
@@ -38,7 +46,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this._subscription.unsubscribe();
+    this._subscription.forEach(sub => sub.unsubscribe);
   }
 
   showModal(course: Courses) {
@@ -53,6 +61,29 @@ export class DashboardComponent implements OnInit, OnDestroy {
     self.classList.add('is--active');
 
     this._el.courses.setAttribute('data-view-mode', mode);
+  }
+
+  private _buildSearchForm() {
+    this.searchForm = this.fb.group({
+      search: [
+        '',
+        Validators.compose([
+          Validators.required
+        ])
+      ]
+    });
+
+    this._subscription.push(
+      this.searchTerm.valueChanges.subscribe(term => {
+        if (this.searchTerm.value) {
+          this.searching = true;
+          this._filterMatters(term);
+        } else {
+          this.filteredCourses = [];
+          this.searching = false;
+        }
+      })
+    );
   }
 
   private _buildCourses() {
@@ -84,7 +115,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     };
 
     this.loaderService.show();
-    this._subscription = this.endpointService.getCourses().subscribe(next, error, complete);
+    this._subscription.push(this.endpointService.getCourses().subscribe(next, error, complete));
   }
 
   private _separateCourses() {
@@ -94,5 +125,23 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   private _showDashboard() {
     this._el.self.classList.remove('is--hidden');
+  }
+
+  private _filterMatters(searchTerm) {
+    this.filteredCourses = this._coursesRaw.filter(course => {
+      const nameFormatted = this.helpers.removeSpecialCharacters(course.name).toLocaleLowerCase();
+      return nameFormatted.match(searchTerm.toLocaleLowerCase());
+    });
+
+    this.filteredCourses.sort((a, b) => {
+      const aFormatted = this.helpers.removeSpecialCharacters(a.name);
+      const bFormatted = this.helpers.removeSpecialCharacters(b.name);
+
+      return (aFormatted > bFormatted) ? 1 : (aFormatted < bFormatted) ? -1 : 0;
+    });
+  }
+
+  get searchTerm() {
+    return this.searchForm.get('search');
   }
 }
