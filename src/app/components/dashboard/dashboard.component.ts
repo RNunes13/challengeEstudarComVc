@@ -30,8 +30,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this._el = new DashboardElements();
     setTimeout(() => {
-      this.showDashboard()
-      this.buildCourses();
+      this._showDashboard()
+      this._buildCourses();
     }, 500);
   }
 
@@ -39,18 +39,33 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this._subscription.unsubscribe();
   }
 
-  buildCourses() {
-    this.loaderService.show();
-
-    this._subscription = this.endpointService.getCourses().subscribe(courses => {
-      this._coursesRaw = courses;
-      this._separateCourses();
-      this.loaderService.hide();
-    });
-  }
-
   showModal(course: Courses) {
     this.modalService.build(course);
+  }
+
+  private _buildCourses() {
+    const next = (courses) => {
+      if ((Array.isArray(courses) && !courses.length) || !courses) {
+        this.genericCourses = [];
+        this.customCourses = [];
+        return false;
+      }
+
+      this._coursesRaw = courses;
+      this._separateCourses();
+    };
+
+    const error = (err) => {
+      this.loaderService.hide();
+      console.log('error -> ', err);
+    };
+
+    const complete = () => {
+      this.loaderService.hide();
+    };
+
+    this.loaderService.show();
+    this._subscription = this.endpointService.getCourses().subscribe(next, error, complete);
   }
 
   private _separateCourses() {
@@ -58,7 +73,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.customCourses = this._coursesRaw.filter(course => !course.generic);
   }
 
-  private showDashboard() {
+  private _showDashboard() {
     this._el.self.classList.remove('is--hidden');
   }
 }

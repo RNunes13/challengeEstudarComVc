@@ -3,7 +3,7 @@
     <h1 class='dashboard__heading'>Dashboard</h1>
     <div class='dashboard__content'>
       <div class='dashboard__courses'>
-        <div class='dashboard__courses--custom'>
+        <div class='dashboard__courses--custom' *ngIf='customCourses?.length'>
           <h3 class='dashboard__courses--custom-title'>Matérias Personalizadas</h3>
           <div class='dashboard__courses--custom-container'>
             <div class='card'
@@ -27,7 +27,7 @@
             </div>
           </div>
         </div>
-        <div class='dashboard__courses--generic'>
+        <div class='dashboard__courses--generic' *ngIf='genericCourses?.length'>
           <h3 class='dashboard__courses--generic-title'>Matérias Gerais</h3>
           <div class='dashboard__courses--generic-container'>
             <div class='card'
@@ -50,6 +50,9 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class='dashboard__courses--empty' *ngIf='!genericCourses?.length && !customCourses?.length'>
+          <h3 class='dashboard__courses--empty-title'>Não foram encontras máterias para listar.</h3>
         </div>
       </div>
     </div>
