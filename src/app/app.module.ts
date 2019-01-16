@@ -10,6 +10,7 @@ import { EndpointService } from './core/endpoint/endpoint.service';
 import { ModalService } from './core/modal/modal.service';
 import { LoaderService } from './core/loader/loader.service';
 import { NotifyService } from './core/notify/notify.service';
+import { HelpersService } from './core/helpers/helpers.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { NotifyService } from './core/notify/notify.service';
     EndpointService,
     ModalService,
     LoaderService,
-    NotifyService
+    NotifyService,
+    HelpersService
   ],
   bootstrap: [AppComponent]
 })
