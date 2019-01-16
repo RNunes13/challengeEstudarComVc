@@ -1,0 +1,47 @@
+@keyframes rotate {
+  0% { transform: translate(-50%, -50%) rotate(0) }
+  100% { transform: translate(-50%, -50%) rotate(360deg) }
+}
+
+$loader-border: 4px;
+$loader-height: 50px;
+$loader-width: 50px;
+
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba($color-white, 0.7);
+  transition: 0.5s ease;
+
+  &.is--hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: $loader-width;
+    height: $loader-height;
+    border-radius: 50%;
+    border: $loader-border solid transparent;
+    transform: translate(-50%, -50%);
+    animation: rotate linear infinite;
+
+    &:nth-child(1) {
+      border-top: $loader-border solid $color-secondary;
+      border-left: $loader-border solid $color-secondary;
+      animation-duration: 0.8s;
+    }
+
+    &:nth-child(2) {
+      border-right: $loader-border solid $color-primary;
+      border-bottom: $loader-border solid $color-primary;
+      animation-duration: 1.6s;
+    }
+  }
+}

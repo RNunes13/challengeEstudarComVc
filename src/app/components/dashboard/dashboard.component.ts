@@ -5,6 +5,7 @@ import { Courses } from 'src/app/model/courses';
 import { DashboardElements } from './dashboard.elements';
 import { EndpointService } from 'src/app/core/endpoint/endpoint.service';
 import { ModalService } from 'src/app/core/modal/modal.service';
+import { LoaderService } from 'src/app/core/loader/loader.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,12 +21,18 @@ export class DashboardComponent implements OnInit, OnDestroy {
   customCourses: Array<Courses>;
   genericCourses: Array<Courses>;
 
-  constructor(private endpointService: EndpointService, private modalService: ModalService) { }
+  constructor(
+    private endpointService: EndpointService,
+    private modalService: ModalService,
+    private loaderService: LoaderService
+  ) { }
 
   ngOnInit() {
     this._el = new DashboardElements();
-    this.buildCourses();
-    setTimeout(() => this.showDashboard(), 500);
+    setTimeout(() => {
+      this.showDashboard()
+      this.buildCourses();
+    }, 500);
   }
 
   ngOnDestroy() {
@@ -33,9 +40,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   buildCourses() {
+    this.loaderService.show();
+
     this._subscription = this.endpointService.getCourses().subscribe(courses => {
       this._coursesRaw = courses;
       this._separateCourses();
+      this.loaderService.hide();
     });
   }
 
