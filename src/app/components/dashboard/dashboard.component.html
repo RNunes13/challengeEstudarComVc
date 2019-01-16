@@ -1,0 +1,57 @@
+<section class='dashboard is--section is--hidden js--section'>
+  <div class='dashboard__container'>
+    <h1 class='dashboard__heading'>Dashboard</h1>
+    <div class='dashboard__content'>
+      <div class='dashboard__courses'>
+        <div class='dashboard__courses--custom'>
+          <h3 class='dashboard__courses--custom-title'>Matérias Personalizadas</h3>
+          <div class='dashboard__courses--custom-container'>
+            <div class='card'
+                 *ngFor='let customCourse of customCourses'
+                 (click)='showModal(customCourse)'>
+              <div class='card__container'>
+                <figure class='card__image--container color-custom-course'>
+                  <img class='card__image'
+                       [src]='customCourse.image'
+                       [alt]='customCourse.name'
+                       *ngIf='customCourse.image'>
+                  <img class='card__image'
+                       src='assets/img/box.png'
+                       alt='customCourse.name'
+                       *ngIf='!customCourse.image'>
+                </figure>
+                <div class='card__content'>
+                  <span class='card__title'>{{ customCourse.name }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class='dashboard__courses--generic'>
+          <h3 class='dashboard__courses--generic-title'>Matérias Gerais</h3>
+          <div class='dashboard__courses--generic-container'>
+            <div class='card'
+                 *ngFor='let genericCourse of genericCourses'
+                 (click)='showModal(genericCourse)'>
+              <div class='card__container'>
+                <figure class='card__image--container color-generic-course'>
+                  <img class='card__image'
+                       [src]='genericCourse.image'
+                       [alt]='genericCourse.name'
+                       *ngIf='genericCourse.image'>
+                  <img class='card__image'
+                       src='assets/img/box.png'
+                       alt='genericCourse.name'
+                       *ngIf='!genericCourse.image'>
+                </figure>
+                <div class='card__content'>
+                  <span class='card__title'>{{ genericCourse.name }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

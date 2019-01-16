@@ -1,0 +1,101 @@
+@import './../../../assets/scss/_config-base';
+
+.dashboard {
+  @include rem(padding, 15px);
+  transition: .5s ease;
+
+  &.is--hidden {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  &__container {
+    @include rem(padding, 20px);
+    @include rem(border-radius, 5px);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    transition: .5s ease;
+  }
+
+  &__heading {
+    @include rem(padding-bottom, 15px);
+    @include font-weight(bold);
+    text-align: center;
+    transition: .3s ease;
+    border-bottom: 1px solid #eee;
+
+    @include mq('md') {
+      @include rem(font-size, 30px);
+    }
+
+    @include mq('md', max) {
+      @include rem(font-size, 25px);
+    }
+  }
+
+  &__content {
+    @include rem(padding, 20px 0);
+  }
+
+  &__items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  &__item {
+    @include rem(margin-bottom, 20px);
+    @include rem(padding, 10px);
+    @include rem(border-radius, 5px);
+    border: 1px solid #ccc;
+
+    @include mq('md', max) {
+      flex-basis: 100%;
+    }
+    @include mq('md') {
+      flex-basis: 49%;
+    }
+
+    &--name {
+      @include font-weight(bold);
+    }
+
+    &--description {
+      display: block;
+      color: rgba(0,0,0,.54);
+
+      @include mq('md', max) {
+        @include rem(margin-top, 5px);
+        display: block;
+      }
+    }
+
+    &--password {
+      &-container {
+        @include rem(margin-top, 10px);
+      }
+    }
+  }
+
+  &__courses {
+    &--custom,
+    &--generic {
+      @include rem(margin-bottom, 20px);
+      @include rem(padding-bottom, 15px);
+
+      &-container {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      &-title {
+        @include rem(margin-bottom, 15px);
+        @include rem(font-size, 20px);
+        color: $color-blue-darker;
+      }
+    }
+
+    &--custom {
+      border-bottom: 1px solid $color-gray-light;
+    }
+  }
+}
