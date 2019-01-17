@@ -1,0 +1,44 @@
+@import './../../../assets/scss/_config-base';
+
+.notFound {
+  @include rem(padding, 15px);
+  transition: .5s ease;
+
+  &__container {
+    @include rem(padding, 20px);
+    @include rem(border-radius, 5px);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    text-align: center;
+  }
+
+  &__number,
+  &__text {
+    transition: .5s ease;
+  }
+
+  &__number {
+    @include rem(font-size, 100px);
+    font-family: $font-support;
+    color: darken($color-primary, 10%);
+
+    @include mq('md', max) {
+      @include rem(font-size, 80px);
+    }
+  }
+
+  &__text {
+    @include rem(margin-top, 10px);
+    @include rem(font-size, 50px);
+    color: $color-primary;
+
+    @include mq('md', max) {
+      @include rem(font-size, 40px);
+    }
+  }
+
+  &__button {
+    @extend %btn--primary-fill;
+    @include rem(height, 30px);
+  }
+}
